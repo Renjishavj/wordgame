@@ -44,7 +44,7 @@ const UserSidebar = () => {
               <div key={user.name} className="user-card ranked">
                 <div className={`avatar-wrapper rank-border-${index}`}>
                   <img
-                    src={user.profilePic ? `https://wordgame-m15v.onrender.com${user.profilePic}` : 'https://via.placeholder.com/50'}
+                    src={user.profilePic ? `https://wordgame-1-nmd1.onrender.com${user.profilePic}` : 'https://via.placeholder.com/50'}
                     alt={`${user.name}'s avatar`}
                     className="user-avatar"
                   />
@@ -64,7 +64,7 @@ const UserSidebar = () => {
               <div key={user.name} className="user-card">
                 <div className="avatar-wrapper">
                   <img
-                    src={user.profilePic ? `https://wordgame-m15v.onrender.com${user.profilePic}` : 'https://via.placeholder.com/50'}
+                    src={user.profilePic ? `https://wordgame-1-nmd1.onrender.com${user.profilePic}` : 'https://via.placeholder.com/50'}
                     alt={`${user.name}'s avatar`}
                     className="user-avatar unplayed-avatar"
                   />
