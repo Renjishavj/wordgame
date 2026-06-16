@@ -8,7 +8,7 @@ const UserSidebar = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/users');
+        const res = await axios.get('https://wordgame-m15v.onrender.com/api/users');
         setUsers(res.data);
       } catch (err) {
         console.error('Error fetching users:', err);
@@ -43,10 +43,10 @@ const UserSidebar = () => {
             {playedToday.map((user, index) => (
               <div key={user.name} className="user-card ranked">
                 <div className={`avatar-wrapper rank-border-${index}`}>
-                  <img 
-                    src={user.profilePic ? `http://localhost:5000${user.profilePic}` : 'https://via.placeholder.com/50'} 
-                    alt={`${user.name}'s avatar`} 
-                    className="user-avatar" 
+                  <img
+                    src={user.profilePic ? `https://wordgame-m15v.onrender.com${user.profilePic}` : 'https://via.placeholder.com/50'}
+                    alt={`${user.name}'s avatar`}
+                    className="user-avatar"
                   />
                   {index < 3 && <span className={`avatar-badge rank-badge-${index}`}>{index + 1}</span>}
                 </div>
@@ -57,16 +57,16 @@ const UserSidebar = () => {
                 {index >= 3 && <span className="rank-other">#{index + 1}</span>}
               </div>
             ))}
-            
+
             {others.length > 0 && <h3 className="sidebar-subtitle">YET TO PLAY</h3>}
-            
+
             {others.map((user) => (
               <div key={user.name} className="user-card">
                 <div className="avatar-wrapper">
-                  <img 
-                    src={user.profilePic ? `http://localhost:5000${user.profilePic}` : 'https://via.placeholder.com/50'} 
-                    alt={`${user.name}'s avatar`} 
-                    className="user-avatar unplayed-avatar" 
+                  <img
+                    src={user.profilePic ? `https://wordgame-m15v.onrender.com${user.profilePic}` : 'https://via.placeholder.com/50'}
+                    alt={`${user.name}'s avatar`}
+                    className="user-avatar unplayed-avatar"
                   />
                 </div>
                 <div className="user-details">

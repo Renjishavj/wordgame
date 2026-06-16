@@ -15,7 +15,7 @@ const Dashboard = () => {
         try {
           const token = localStorage.getItem('token');
           if (!token) return;
-          const res = await axios.get('http://localhost:5000/api/users/me', {
+          const res = await axios.get('https://wordgame-m15v.onrender.com/api/users/me', {
             headers: { 'x-auth-token': token }
           });
           if (res.data && res.data.name) {

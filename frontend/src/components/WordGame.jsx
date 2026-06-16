@@ -28,7 +28,7 @@ const WordGame = () => {
     const userId = localStorage.getItem('userId') || 'guest';
     const stateKey = `wordGameState_${userId}`;
     const savedState = localStorage.getItem(stateKey);
-    
+
     if (savedState) {
       const parsedState = JSON.parse(savedState);
       if (parsedState.date === today) {
@@ -61,7 +61,7 @@ const WordGame = () => {
     try {
       const token = localStorage.getItem('token');
       if (!token) return;
-      await axios.post('http://localhost:5000/api/users/score', {
+      await axios.post('https://wordgame-m15v.onrender.com/api/users/score', {
         score,
         date: new Date().toDateString()
       }, {
@@ -76,7 +76,7 @@ const WordGame = () => {
     const today = new Date().toDateString();
     const userId = localStorage.getItem('userId') || 'guest';
     const stateKey = `wordGameState_${userId}`;
-    
+
     localStorage.setItem(stateKey, JSON.stringify({
       date: today,
       targetWord: currentTarget || targetWord,
@@ -106,7 +106,7 @@ const WordGame = () => {
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.ctrlKey || e.metaKey || e.altKey) return;
-      
+
       const key = e.key.toUpperCase();
       if (key === 'ENTER' || key === 'BACKSPACE') {
         onKeyPress(key);
@@ -122,7 +122,7 @@ const WordGame = () => {
   const submitGuess = () => {
     // Validate guess
     const formattedGuess = currentGuess.toUpperCase();
-    
+
     // Calculate tile statuses
     const newGuess = Array(WORD_LENGTH).fill(null);
     const targetLetters = targetWord.split('');
@@ -144,7 +144,7 @@ const WordGame = () => {
 
       const letter = formattedGuess[i];
       const targetIndex = targetLetters.indexOf(letter);
-      
+
       if (targetIndex !== -1) {
         newGuess[i] = { letter, status: 'present', isRevealing: true };
         targetLetters[targetIndex] = null;
@@ -188,7 +188,7 @@ const WordGame = () => {
     // Reset revealing animation flag after animation completes
     setTimeout(() => {
       const resetGuesses = [...newGuesses];
-      resetGuesses[resetGuesses.length - 1] = resetGuesses[resetGuesses.length - 1].map(t => ({...t, isRevealing: false}));
+      resetGuesses[resetGuesses.length - 1] = resetGuesses[resetGuesses.length - 1].map(t => ({ ...t, isRevealing: false }));
       setGuesses(resetGuesses);
     }, WORD_LENGTH * 300 + 500);
   };
@@ -196,45 +196,45 @@ const WordGame = () => {
   return (
     <div className="word-game-wrapper">
       <div className="word-game-header">
-        <h2 className="game-title" style={{marginBottom: 0}}>TERMINAL HACK</h2>
+        <h2 className="game-title" style={{ marginBottom: 0 }}>TERMINAL HACK</h2>
         <button className="btn-icon" onClick={() => setShowHowToPlay(true)}>
           ❓
         </button>
       </div>
 
-      <GameBoard 
-        guesses={guesses} 
-        currentGuess={currentGuess} 
-        currentRow={guesses.length} 
+      <GameBoard
+        guesses={guesses}
+        currentGuess={currentGuess}
+        currentRow={guesses.length}
       />
-      
-      <Keyboard 
-        onKeyPress={onKeyPress} 
-        usedKeys={usedKeys} 
+
+      <Keyboard
+        onKeyPress={onKeyPress}
+        usedKeys={usedKeys}
       />
 
       {showGameOverModal && (
-        <GameOver 
-          isWin={isWin} 
-          word={targetWord} 
+        <GameOver
+          isWin={isWin}
+          word={targetWord}
           onClose={() => setShowGameOverModal(false)}
         />
       )}
 
-      <Modal 
-        isOpen={showHowToPlay} 
-        onClose={() => setShowHowToPlay(false)} 
+      <Modal
+        isOpen={showHowToPlay}
+        onClose={() => setShowHowToPlay(false)}
         title="HOW TO PLAY"
       >
         <p>Guess the <strong>TERMINAL HACK</strong> code in 6 tries.</p>
-        <ul style={{textAlign: 'left', marginTop: '10px', paddingLeft: '20px'}}>
+        <ul style={{ textAlign: 'left', marginTop: '10px', paddingLeft: '20px' }}>
           <li>Each guess must be a valid 5-letter word.</li>
           <li>Hit the enter button to submit.</li>
           <li>After each guess, the color of the tiles will change to show how close your guess was to the word.</li>
         </ul>
         <div className="examples" style={{ marginTop: '20px', textAlign: 'left' }}>
           <p style={{ marginBottom: '15px', color: '#fff' }}><strong>Examples:</strong></p>
-          
+
           <div style={{ display: 'flex', gap: '6px', marginBottom: '8px' }}>
             <div className="tile correct" style={{ width: '40px', height: '40px', fontSize: '1.5rem', flexShrink: 0 }}>W</div>
             <div className="tile" style={{ width: '40px', height: '40px', fontSize: '1.5rem', flexShrink: 0 }}>O</div>
@@ -243,7 +243,7 @@ const WordGame = () => {
             <div className="tile" style={{ width: '40px', height: '40px', fontSize: '1.5rem', flexShrink: 0 }}>S</div>
           </div>
           <p className="text-sm text-secondary" style={{ marginBottom: '20px', fontSize: '14px' }}><strong>W</strong> is in the word and in the correct spot.</p>
-          
+
           <div style={{ display: 'flex', gap: '6px', marginBottom: '8px' }}>
             <div className="tile" style={{ width: '40px', height: '40px', fontSize: '1.5rem', flexShrink: 0 }}>P</div>
             <div className="tile present" style={{ width: '40px', height: '40px', fontSize: '1.5rem', flexShrink: 0 }}>I</div>
@@ -252,7 +252,7 @@ const WordGame = () => {
             <div className="tile" style={{ width: '40px', height: '40px', fontSize: '1.5rem', flexShrink: 0 }}>S</div>
           </div>
           <p className="text-sm text-secondary" style={{ marginBottom: '20px', fontSize: '14px' }}><strong>I</strong> is in the word but in the wrong spot.</p>
-          
+
           <div style={{ display: 'flex', gap: '6px', marginBottom: '8px' }}>
             <div className="tile" style={{ width: '40px', height: '40px', fontSize: '1.5rem', flexShrink: 0 }}>V</div>
             <div className="tile" style={{ width: '40px', height: '40px', fontSize: '1.5rem', flexShrink: 0 }}>A</div>

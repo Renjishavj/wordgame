@@ -32,7 +32,7 @@ const Register = () => {
     }
 
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/register', submitData, {
+      const res = await axios.post('https://wordgame-m15v.onrender.com/api/auth/register', submitData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -50,46 +50,46 @@ const Register = () => {
   return (
     <div className="game-container">
       <h2 className="game-title">PLAYER REGISTRATION</h2>
-      
+
       {error && <div className="error-msg">{error}</div>}
       {success && <div className="success-msg">{success}</div>}
 
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label>Player Name</label>
-          <input 
-            type="text" 
-            className="form-control" 
-            name="name" 
-            value={name} 
-            onChange={onChange} 
-            required 
+          <input
+            type="text"
+            className="form-control"
+            name="name"
+            value={name}
+            onChange={onChange}
+            required
             placeholder="Enter your gamertag"
           />
         </div>
-        
+
         <div className="form-group">
           <label>Email Address</label>
-          <input 
-            type="email" 
-            className="form-control" 
-            name="email" 
-            value={email} 
-            onChange={onChange} 
-            required 
+          <input
+            type="email"
+            className="form-control"
+            name="email"
+            value={email}
+            onChange={onChange}
+            required
             placeholder="Enter your email"
           />
         </div>
 
         <div className="form-group">
           <label>Secret Password</label>
-          <input 
-            type="password" 
-            className="form-control" 
-            name="password" 
-            value={password} 
-            onChange={onChange} 
-            required 
+          <input
+            type="password"
+            className="form-control"
+            name="password"
+            value={password}
+            onChange={onChange}
+            required
             placeholder="Enter your password"
             minLength="6"
           />
@@ -101,10 +101,10 @@ const Register = () => {
             <div className="btn-file">
               {profilePic ? profilePic.name : 'UPLOAD IMAGE'}
             </div>
-            <input 
-              type="file" 
-              name="profilePic" 
-              onChange={onFileChange} 
+            <input
+              type="file"
+              name="profilePic"
+              onChange={onFileChange}
               accept="image/*"
             />
           </div>
@@ -112,7 +112,7 @@ const Register = () => {
 
         <button type="submit" className="btn-primary">CREATE ACCOUNT</button>
       </form>
-      
+
       <Link to="/login" className="switch-link">ALREADY A PLAYER? LOGIN HERE</Link>
     </div>
   );

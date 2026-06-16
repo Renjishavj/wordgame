@@ -21,7 +21,7 @@ const Login = () => {
     setSuccess('');
 
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+      const res = await axios.post('https://wordgame-m15v.onrender.com/api/auth/login', { email, password });
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('userId', res.data.user.id);
       localStorage.setItem('userName', res.data.user.name);
@@ -35,40 +35,40 @@ const Login = () => {
   return (
     <div className="game-container">
       <h2 className="game-title">SYSTEM LOGIN</h2>
-      
+
       {error && <div className="error-msg">{error}</div>}
       {success && <div className="success-msg">{success}</div>}
 
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label>Email Address</label>
-          <input 
-            type="email" 
-            className="form-control" 
-            name="email" 
-            value={email} 
-            onChange={onChange} 
-            required 
+          <input
+            type="email"
+            className="form-control"
+            name="email"
+            value={email}
+            onChange={onChange}
+            required
             placeholder="Enter your email"
           />
         </div>
 
         <div className="form-group">
           <label>Secret Password</label>
-          <input 
-            type="password" 
-            className="form-control" 
-            name="password" 
-            value={password} 
-            onChange={onChange} 
-            required 
+          <input
+            type="password"
+            className="form-control"
+            name="password"
+            value={password}
+            onChange={onChange}
+            required
             placeholder="Enter your password"
           />
         </div>
 
         <button type="submit" className="btn-primary">INITIALIZE LOGIN</button>
       </form>
-      
+
       <Link to="/register" className="switch-link">NEW PLAYER? REGISTER HERE</Link>
     </div>
   );
