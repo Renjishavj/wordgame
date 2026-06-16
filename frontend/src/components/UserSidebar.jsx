@@ -10,6 +10,7 @@ const UserSidebar = () => {
       try {
         const res = await axios.get('https://wordgame-m15v.onrender.com/api/users');
         setUsers(res.data);
+        console.log(res.data);
       } catch (err) {
         console.error('Error fetching users:', err);
       } finally {
@@ -28,6 +29,18 @@ const UserSidebar = () => {
   // Sort played today by score ascending
   playedToday.sort((a, b) => a.dailyScore - b.dailyScore);
 
+  const defaultAvatar = 'data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"><rect width="50" height="50" fill="%23111"/><circle cx="25" cy="16" r="12" fill="%2338bdf8"/><path d="M14 39c0-7 5.5-12 11-12s11 5 11 12v1H14v-1z" fill="%23fff"/></svg>';
+
+  const getAvatarSrc = (user) => {
+    if (!user.profilePic) {
+      return defaultAvatar;
+    }
+
+    return user.profilePic.startsWith('http')
+      ? user.profilePic
+      : `https://wordgame-m15v.onrender.com${user.profilePic}`;
+  };
+
   // Removed getRankBadge since we are using inline avatar badges now
 
   return (
@@ -44,10 +57,10 @@ const UserSidebar = () => {
               <div key={user.name} className="user-card ranked">
                 <div className={`avatar-wrapper rank-border-${index}`}>
                   <img
-                    src={user.profilePic ? `https://wordgame-m15v.onrender.com${user.profilePic}` : 'https://via.placeholder.com/50'}
+                    src={getAvatarSrc(user)}
                     alt={`${user.name}'s avatar`}
                     className="user-avatar"
-                    onError={(e) => { console.error('Avatar load failed:', e.target.src); e.target.src = 'https://via.placeholder.com/50'; }}
+                    onError={(e) => { console.error('Avatar load failed:', e.target.src); e.target.src = defaultAvatar; }}
                   />
                   {index < 3 && <span className={`avatar-badge rank-badge-${index}`}>{index + 1}</span>}
                 </div>
@@ -65,10 +78,10 @@ const UserSidebar = () => {
               <div key={user.name} className="user-card">
                 <div className="avatar-wrapper">
                   <img
-                    src={user.profilePic ? `https://wordgame-m15v.onrender.com${user.profilePic}` : 'https://via.placeholder.com/50'}
+                    src={getAvatarSrc(user)}
                     alt={`${user.name}'s avatar`}
                     className="user-avatar unplayed-avatar"
-                    onError={(e) => { console.error('Avatar load failed:', e.target.src); e.target.src = 'https://via.placeholder.com/50'; }}
+                    onError={(e) => { console.error('Avatar load failed:', e.target.src); e.target.src = defaultAvatar; }}
                   />
                 </div>
                 <div className="user-details">
