@@ -6,29 +6,36 @@ import axios from 'axios';
 
 const Dashboard = () => {
   const navigate = useNavigate();
-
   const [userName, setUserName] = useState(localStorage.getItem('userName') || 'PLAYER');
 
   useEffect(() => {
-    if (userName === 'PLAYER') {
-      const fetchName = async () => {
-        try {
-          const token = localStorage.getItem('token');
-          if (!token) return;
-          const res = await axios.get('https://wordgame-m15v.onrender.com/api/users/me', {
-            headers: { 'x-auth-token': token }
-          });
-          if (res.data && res.data.name) {
-            setUserName(res.data.name);
-            localStorage.setItem('userName', res.data.name);
-          }
-        } catch (err) {
-          console.error(err);
+    const verifyUser = async () => {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        navigate('/login');
+        return;
+      }
+
+      try {
+        const res = await axios.get('https://wordgame-m15v.onrender.com/api/users/me', {
+          headers: { 'x-auth-token': token }
+        });
+
+        if (res.data?.name) {
+          setUserName(res.data.name);
+          localStorage.setItem('userName', res.data.name);
         }
-      };
-      fetchName();
-    }
-  }, [userName]);
+      } catch (err) {
+        console.error(err);
+        localStorage.removeItem('token');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('userName');
+        navigate('/login');
+      }
+    };
+
+    verifyUser();
+  }, [navigate]);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
