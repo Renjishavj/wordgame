@@ -51,13 +51,14 @@ body {
 }
 
 .game-title {
-  font-family: 'Press Start 2P', cursive;
-  font-size: 24px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 26px;
   color: #fff;
-  text-shadow: 2px 2px 0px var(--neon-pink), -2px -2px 0px var(--neon-blue);
-  letter-spacing: 2px;
+  text-shadow: none;
+  letter-spacing: 1px;
 }
 
 /* Forms */
@@ -143,16 +144,17 @@ body {
 
 .greeting-text {
   font-family: 'Rajdhani', sans-serif;
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 20px;
+  font-weight: 500;
   color: var(--text-primary);
-  letter-spacing: 1px;
+  letter-spacing: 0.8px;
   text-transform: uppercase;
   margin: 0;
 }
 
 .greeting-text span {
   color: var(--neon-blue);
+  font-weight: 600;
 }
 
 .logout-btn {
@@ -177,8 +179,11 @@ body {
 }
 
 .sidebar-title {
-  font-size: 16px;
-  margin-bottom: 20px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 15px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
 .user-list {
