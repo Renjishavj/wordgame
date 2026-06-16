@@ -21,7 +21,7 @@ const Login = () => {
     setSuccess('');
 
     try {
-      const res = await axios.post('https://wordgame-1-nmd1.onrender.com/api/auth/login', { email, password });
+      const res = await axios.post('https://wordgame-m15v.onrender.com/api/auth/login', { email, password });
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('userId', res.data.user.id);
       localStorage.setItem('userName', res.data.user.name);

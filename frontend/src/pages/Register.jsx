@@ -32,7 +32,7 @@ const Register = () => {
     }
 
     try {
-      const res = await axios.post('https://wordgame-1-nmd1.onrender.com/api/auth/register', submitData, {
+      const res = await axios.post('https://wordgame-m15v.onrender.com/api/auth/register', submitData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

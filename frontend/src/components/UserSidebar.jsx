@@ -8,7 +8,7 @@ const UserSidebar = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await axios.get('https://wordgame-1-nmd1.onrender.com/api/users');
+        const res = await axios.get('https://wordgame-m15v.onrender.com/api/users');
         setUsers(res.data);
       } catch (err) {
         console.error('Error fetching users:', err);
@@ -44,9 +44,10 @@ const UserSidebar = () => {
               <div key={user.name} className="user-card ranked">
                 <div className={`avatar-wrapper rank-border-${index}`}>
                   <img
-                    src={user.profilePic ? `https://wordgame-1-nmd1.onrender.com${user.profilePic}` : 'https://via.placeholder.com/50'}
+                    src={user.profilePic ? `https://wordgame-m15v.onrender.com${user.profilePic}` : 'https://via.placeholder.com/50'}
                     alt={`${user.name}'s avatar`}
                     className="user-avatar"
+                    onError={(e) => { console.error('Avatar load failed:', e.target.src); e.target.src = 'https://via.placeholder.com/50'; }}
                   />
                   {index < 3 && <span className={`avatar-badge rank-badge-${index}`}>{index + 1}</span>}
                 </div>
@@ -64,9 +65,10 @@ const UserSidebar = () => {
               <div key={user.name} className="user-card">
                 <div className="avatar-wrapper">
                   <img
-                    src={user.profilePic ? `https://wordgame-1-nmd1.onrender.com${user.profilePic}` : 'https://via.placeholder.com/50'}
+                    src={user.profilePic ? `https://wordgame-m15v.onrender.com${user.profilePic}` : 'https://via.placeholder.com/50'}
                     alt={`${user.name}'s avatar`}
                     className="user-avatar unplayed-avatar"
+                    onError={(e) => { console.error('Avatar load failed:', e.target.src); e.target.src = 'https://via.placeholder.com/50'; }}
                   />
                 </div>
                 <div className="user-details">

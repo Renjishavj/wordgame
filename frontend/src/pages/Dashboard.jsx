@@ -17,7 +17,7 @@ const Dashboard = () => {
       }
 
       try {
-const res = await axios.get('https://wordgame-1-nmd1.onrender.com/api/users/me', {
+        const res = await axios.get('https://wordgame-m15v.onrender.com/api/users/me', {
           headers: { 'x-auth-token': token }
         });
 

@@ -61,7 +61,7 @@ const WordGame = () => {
     try {
       const token = localStorage.getItem('token');
       if (!token) return;
-      await axios.post('https://wordgame-1-nmd1.onrender.com/api/users/score', {
+      await axios.post('https://wordgame-m15v.onrender.com/api/users/score', {
         score,
         date: new Date().toDateString()
       }, {
