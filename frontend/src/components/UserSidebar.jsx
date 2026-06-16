@@ -8,7 +8,7 @@ const UserSidebar = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await axios.get('https://wordgame-m15v.onrender.com/api/users');
+        const res = await axios.get('https://wordgame-1-nmd1.onrender.com/api/users');
         setUsers(res.data);
       } catch (err) {
         console.error('Error fetching users:', err);
